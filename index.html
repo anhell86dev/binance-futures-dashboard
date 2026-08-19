@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binance Futures Dashboard - GitHub Pages</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1>🚀 Binance Futures Dashboard</h1>
+        <div class="connection-status" id="connectionStatus">
+          <span class="status-dot"></span>
+          <span class="status-text">Desconectado</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Controls -->
+    <section class="controls-section">
+      <div class="controls-grid">
+        <div class="control-group">
+          <label for="symbols">Síıımbolos</label>
+          <input 
+            type="text" 
+            id="symbols" 
+            placeholder="btcusdt,ethusdt,solusdt" 
+            value="btcusdt,ethusdt,solusdt"
+          >
+        </div>
+
+        <div class="control-group">
+          <label for="streamType">Tipo de Stream</label>
+          <select id="streamType">
+            <option value="markPrice">Mark Price</option>
+            <option value="kline_1m">Kline 1m</option>
+            <option value="kline_5m">Kline 5m</option>
+            <option value="kline_15m">Kline 15m</option>
+            <option value="kline_1h">Kline 1h</option>
+            <option value="aggTrade">Aggregate Trades</option>
+            <option value="bookTicker">Book Ticker</option>
+            <option value="depth@100ms">Order Book (100ms)</option>
+            <option value="ticker">24h Ticker</option>
+            <option value="miniTicker">Mini Ticker</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>&nbsp;</label>
+          <div class="button-group">
+            <button id="connectBtn" class="btn btn-primary" onclick="connect()">
+              🔌 Conectar
+            </button>
+            <button id="disconnectBtn" class="btn btn-danger" onclick="disconnect()" disabled>
+              ❌ Desconectar
+            </button>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>&nbsp;</label>
+          <button class="btn btn-secondary" onclick="clearDashboard()">
+            🧹 Limpiar Dashboard
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Overview -->
+    <section class="stats-section">
+      <div class="stat-card">
+        <div class="stat-label">Síıımbolos Activos</div>
+        <div class="stat-value" id="activeSymbols">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Mensajes Recibidos</div>
+        <div class="stat-value" id="messagesReceived">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Ú·ltima Actualizacií¢¢n</div>
+        <div class="stat-value" id="lastUpdate">--:--:--</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Estado</div>
+        <div class="stat-value" id="wsStatus">Desconectado</div>
+      </div>
+    </section>
+
+    <!-- Dashboard Grid -->
+    <section class="dashboard-grid" id="dashboardGrid">
+      <!-- Las cards se generan diná·¢micamente -->
+    </section>
+
+    <!-- Activity Log -->
+    <section class="log-section">
+      <div class="log-header">
+        <h3>📡 Activity Log</h3>
+        <button class="btn btn-sm btn-secondary" onclick="clearLog()">Limpiar</button>
+      </div>
+      <div class="log-container" id="logContainer"></div>
+    </section>
+  </div>
+
+  <script src="js/websocket.js"></script>
+</body>
+</html>
